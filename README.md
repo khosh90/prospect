@@ -29,11 +29,10 @@ The analysis of multiple imputation has been well-established for R and SPSS. Ho
 
 # The pooled sampling variance or D1 method
 
-## Multivariate Wald Statistic
 
 The multivariate Wald statistic is calculated as (Enders, 2010; Marshall et al., 2009):
 
-\[ D_1 = (\bar{\theta} - \theta_0) V_T^{-1} (\bar{\theta} - \theta_0) / k \]
+$$ \[ D_1 = (\bar{\theta} - \theta_0) V_T^{-1} (\bar{\theta} - \theta_0) / k \] $$
 
 where \( \bar{\theta} \) and \( \theta_0 \) are the pooled coefficient and the value under the null hypothesis (mostly zero), \( V_T \) is the total variance, and \( k \) is the number of parameters. \( V_T \) is:
 
