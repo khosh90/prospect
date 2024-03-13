@@ -32,7 +32,7 @@ The analysis of multiple imputation has been well-established for R and SPSS. Ho
 
 The multivariate Wald statistic is calculated as (Enders, 2010; Marshall et al., 2009):
 
-$$ \[ D_1 = (\bar{\theta} - \theta_0) V_T^{-1} (\bar{\theta} - \theta_0) / k \] $$
+$$D_1 = (\bar{\theta} - \theta_0) V_T^{-1} (\bar{\theta} - \theta_0) / k$$
 
 where $\( \bar{\theta} \)$ and $\( \theta_0 \)$ are the pooled coefficient and the value under the null hypothesis (mostly zero), $\( V_T \)$ is the total variance, and $\( k \)$ is the number of parameters. $\( V_T \)$ is:
 
@@ -40,21 +40,153 @@ $$\[ V_T = (1 + r_1) V_W \]$$
 
 $\( r_1 \)$ is the relative increase in variance due to nonresponse (fraction of missing information), which is in this case obtained by:
 
-$$\[ \bar{r}_1 = (1 + 1/m) \cdot \text{tr}(V_B \bar{V}_W^{-1}) / k \]$$
+$$\bar{r}_1 = (1 + 1/m) \cdot \text{tr}(V_B \bar{V}_W^{-1}) / k $$
 
 where $\( V_B \)$ is the between-imputation variance, $\( V_W \)$ the within-imputation variance, and $\( m \)$ is the number of imputed datasets.
 
 The p-value of the $\( D_1 \)$ statistic is calculated by comparing the value to an $F$ distribution with $\( k \)$ and $\( v_1 \)$ degrees of freedom.
 
-$$\[ p = \Pr[F_{k, v_1} > D_1] \]$$
+$$p = \Pr[F_{k, v_1} > D_1] $$
 Equation below is used when $\( t = k(m-1) > 4 \)4$, 
-$$\[ v_1 = 
+$$ v_1 = 
 \begin{cases} 
 4 + (t - 4) [1 + (1 - 2 t^{-1}) r_1^{-1}]^2 & \text{if } t = k(m-1) > 4 \\$$
 otherwise, use equation:
 $$t (1 + k^{-1}) (1 + r_1^{-1})^2 / 2 & \text{otherwise}
 \end{cases}
-\]$$
+$$
 
+# Rubin Rule
+9.1 Pooling Effect Estimates
+When Rubin's Rules (RR) are used, the assumption is that repeated parameter estimates are normally distributed. For certain statistics like correlation coefficients, transformations are applied before applying RR.
 
+Formula (9.1):
+
+latex
+Copy code
+\[
+\bar{\theta} = \frac{1}{m} \left( \sum_{i=1}^{m} \theta_i \right)
+\]
+Here, 
+�
+ˉ
+θ
+ˉ
+  is the pooled parameter estimate, 
+�
+m is the number of imputed datasets, and 
+�
+�
+θ 
+i
+​
+  is the parameter estimate in each imputed dataset 
+�
+i.
+
+9.2 Pooling Standard Errors
+The pooled standard error is derived from components reflecting within and between sampling variance.
+
+Formula (9.2):
+
+latex
+Copy code
+\[
+V_W = \frac{1}{m} \sum_{i=1}^{m} SE_i^2
+\]
+Formula (9.3):
+
+latex
+Copy code
+\[
+V_B = \frac{\sum_{i=1}^{m} (\theta_i - \bar{\theta})^2}{m-1}
+\]
+Formula (9.4):
+
+latex
+Copy code
+\[
+V_{Total} = V_W + V_B + \frac{V_B}{m}
+\]
+Standard Error Pooled:
+
+latex
+Copy code
+\[
+SE_{Pooled} = \sqrt{V_{Total}}
+\]
+9.3 Significance Testing
+For significance testing, the univariate Wald test is used.
+
+Formula (9.5):
+
+latex
+Copy code
+\[
+Wald_{Pooled} = \frac{(\bar{\theta} - \theta_0)^2}{V_{Total}}
+\]
+9.4 Degrees of Freedom and P-values
+Derivation of degrees of freedom (df) and p-value for the pooled t-test involves different formulas.
+
+Formula (9.6):
+
+latex
+Copy code
+\[
+t_{df, 1-\alpha/2}
+\]
+Formula (9.7):
+
+latex
+Copy code
+\[
+F_{1, df} = t^2_{df, 1-\alpha/2}
+\]
+Degrees of Freedom for t-distribution (older method):
+
+latex
+Copy code
+\[
+df_{Old} = (m-1) \lambda^{-2} = (m-1) \left(1 + \frac{1}{r}\right)^2
+\]
+Adjusted Degrees of Freedom:
+
+latex
+Copy code
+\[
+df_{Adjusted} = df_{Old} \times \frac{df_{Observed}}{df_{Old} + df_{Observed}}
+\]
+9.5 Confidence Intervals
+For the 95% confidence interval:
+
+Formula (9.11):
+
+latex
+Copy code
+\[
+\bar{\theta} \pm t_{df, 1-\alpha/2} \times SE_{Pooled}
+\]
+Here, 
+�
+ˉ
+θ
+ˉ
+  is the pooled estimate, 
+�
+t is the t-statistic, 
+�
+�
+df is degrees of freedom, and 
+�
+�
+�
+�
+�
+�
+�
+�
+SE 
+Pooled
+​
+  is the pooled standard error.
 
