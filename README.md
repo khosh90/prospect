@@ -36,13 +36,15 @@ $$D_1 = (\bar{\theta} - \theta_0) V_T^{-1} (\bar{\theta} - \theta_0) / k$$
 where $\( \bar{\theta} \)$ and $\( \theta_0 \)$ are the pooled coefficient and the value under the null hypothesis (mostly zero), $\( V_T \)$ is the total variance, and $\( k \)$ is the number of parameters. $\( V_T \)$ is:
 $$V_T = (1 + r_1) V_W$$
 $\( r_1 \)$ is the relative increase in variance due to nonresponse (fraction of missing information), which is in this case obtained by:
-$$\bar{r}_1 = (1 + 1/m) \cdot \text{tr}(V_B \bar{V}_W^{-1}) / k $$
+
+$$\bar{r}_1 = (1 + 1/m) \cdot \text{tr}(V_B \bar{V}_W^{-1}) / k$$
+
 where $\( V_B \)$ is the between-imputation variance, $\( V_W \)$ the within-imputation variance, and $\( m \)$ is the number of imputed datasets.
 The p-value of the $\( D_1 \)$ statistic is calculated by comparing the value to an $F$ distribution with $\( k \)$ and $\( v_1 \)$ degrees of freedom.
 $$p = \Pr[F_{k, v_1} > D_1] $$
-Equation below is used when $\( t = k(m-1) > 4 \)4$, 
+Equation below is used when $t = k(m-1) > 4$, 
 $$v_1 =  4 + (t - 4) [1 + (1 - 2 t^{-1}) r_1^{-1}]^2$$
-otherwise, use equation:
+otherwise, use the equation:
 $$v_1= t (1 + k^{-1}) (1 + r_1^{-1})^2 / 2$$
 
 [MW Heymans, Iris Eekhout, *Applied Missing Data Analysis with SPSS and R*](https://bookdown.org/mwheymans/bookmi/pooling-methods-for-categorical-variables.html)
