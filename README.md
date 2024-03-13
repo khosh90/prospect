@@ -15,3 +15,11 @@ Today, multiple imputation is the benchmark against which newer methods are comp
 Image source: [Ranjit Lall, Thomas Robinson, Efficient Multiple Imputation for Diverse Data in Python and R: MIDASpy and rMIDAS, 2023](https://www.jstatsoft.org/article/view/v107i09)
 
 The analysis of multiple imputation has been well-established for R and SPSS. However, Python users do not have direct access to the same functionality. In an effort to bridge this gap, I have attempted to develop Rubin's rules and analysis for multiple imputation in Python, aiming to establish it as the benchmark for imputations.
+
+# Function Documentation
+
+| Function Name               | Description                               |
+|-----------------------------|-------------------------------------------|
+| `calculate_variance`        | Calculates variance for imputed data      |
+| `generate_dataset`          | Generates synthetic datasets              |
+| `run_analysis`              | Executes the complete analysis process    |
