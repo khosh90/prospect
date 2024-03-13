@@ -10,4 +10,4 @@ Tests for parameter combinations and technical improvements for degrees of freed
 
 Today, multiple imputation is the benchmark against which newer methods are compared, marking a significant evolution and acceptance in dealing with missing data.
 
-![Alt Text](https://path/to/your/img.jpg)
+![Alt Text](https://img.jpg)
