@@ -36,7 +36,7 @@ $$D_1 = (\bar{\theta} - \theta_0) V_T^{-1} (\bar{\theta} - \theta_0) / k$$
 
 where $\( \bar{\theta} \)$ and $\( \theta_0 \)$ are the pooled coefficient and the value under the null hypothesis (mostly zero), $\( V_T \)$ is the total variance, and $\( k \)$ is the number of parameters. $\( V_T \)$ is:
 
-$$\V_T = (1 + r_1) V_W$$
+$$V_T = (1 + r_1) V_W$$
 
 $\( r_1 \)$ is the relative increase in variance due to nonresponse (fraction of missing information), which is in this case obtained by:
 
@@ -60,13 +60,17 @@ $$
 ##### Pooling Effect Estimates
 When Rubin's Rules (RR) are used, the assumption is that repeated parameter estimates are normally distributed. For certain statistics like correlation coefficients, transformations are applied before applying RR.
 $$\bar{\theta} = \frac{1}{m} \left( \sum_{i=1}^{m} \theta_i \right)$$
-Here,$\bar{\theta}$ is the pooled parameter estimate, $m$ is the number of imputed datasets, and ${\theta}_i$ is the parameter estimate in each imputed dataset $i$.
+Here, $\bar{\theta}$ is the pooled parameter estimate, $m$ is the number of imputed datasets, and $\theta_i$ is the parameter estimate in each imputed dataset $i$.
 
 ##### Pooling Standard Errors
 The pooled standard error is derived from components reflecting within and between sampling variance.
-$$ V_W = \frac{1}{m} \sum_{i=1}^{m} SE_i^2$$
-$$ V_B = \frac{\sum_{i=1}^{m} (\theta_i - \bar{\theta})^2}{m-1}$$
+$$V_W = \frac{1}{m} \sum_{i=1}^{m} SE_i^2$$
+
+$$V_B = \frac{\sum_{i=1}^{m}(\theta_i - \bar{\theta})^2}{m-1}$$
+$$V_B = \frac{\sum_{i=1}^{m}}{m-1}$$
+
 $$V_{Total} = V_W + V_B + \frac{V_B}{m}$$
+
 $$SE_{Pooled} = \sqrt{V_{Total}}$$
 
 ##### Significance Testing
@@ -82,8 +86,9 @@ $$df_{Old} = (m-1) \lambda^{-2} = (m-1) \left(1 + \frac{1}{r}\right)^2$$
 Adjusted Degrees of Freedom:
 
 $$df_{Adjusted} = df_{Old} \times \frac{df_{Observed}}{df_{Old} + df_{Observed}}$$
+
 ##### Confidence Intervals
 For the 95% confidence interval:
-$$ \bar{\theta} \pm t_{df, 1-\alpha/2} \times SE_{Pooled}$$
-Here, $\bar{\theta}$is the pooled estimate, $t$ is the t-statistic, $df$ is degrees of freedom, and $SE_pooled$ is the pooled standard error.
+$$\bar{\theta} \pm t_{df, 1-\alpha/2} \times SE_{Pooled}$$
+Here,$\bar{\theta}$ is the pooled estimate, $t$ is the t-statistic, $df$ is degrees of freedom, and $SE_pooled$ is the pooled standard error.
 
