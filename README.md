@@ -22,20 +22,39 @@ The analysis of multiple imputation has been well-established for R and SPSS. Ho
 |-----------------------------------------|-------------------------------------------|
 | `encode_categorical`                    | Encoding categorical variables     |
 | `numerical_backto_categorical`          | Return numerical to categorical              |
-| `decode_midas`                          | Decode categorical variables in imputed datasets obtained from MIDAS     |
 | `no_impute_variables`                          | Identify columns that may not be suitable for imputation ('Identifier', 'Datetime', 'High Cardinality', and 'Free Text'.|
-| `preprocess_midas`                    | Preprocess the input data for Multiple Imputation by Chained Equations with Midas.     |
 | `numerical_rubin`          | Perform Rubin's Rules for combining results from multiple imputed datasets for numerical variables.              |
-| `categorical_rubin`                          | Perform Rubin's Rules for combining results from multiple imputed datasets for categorical variables. |
+| `categorical_pooling`                          | Perform Rubin's Rules for combining results from multiple imputed datasets for categorical variables. |
 | `evaluate_imputed_data`                          |  Evaluate imputed data and calculate various metrics.|
 
-# Math
-The Rubin's rule for combining repeated complete-data estimates is given by:
+# The pooled sampling variance or D1 method
 
-$$ D_1 = (\bar{\theta} - \theta_0)^T V_T^{-1} (\bar{\theta} - \theta_0) / k $$
+## Multivariate Wald Statistic
 
-where:
-- \( \bar{\theta} \) is the pooled coefficient,
-- \( \theta_0 \) is the value under the null hypothesis,
-- \( V_T \) is the total variance, and
-- \( k \) is the number of parameters.
+The multivariate Wald statistic is calculated as (Enders, 2010; Marshall et al., 2009):
+
+\[ D_1 = (\bar{\theta} - \theta_0) V_T^{-1} (\bar{\theta} - \theta_0) / k \]
+
+where \( \bar{\theta} \) and \( \theta_0 \) are the pooled coefficient and the value under the null hypothesis (mostly zero), \( V_T \) is the total variance, and \( k \) is the number of parameters. \( V_T \) is:
+
+\[ V_T = (1 + r_1) V_W \]
+
+\( r_1 \) is the relative increase in variance due to nonresponse (fraction of missing information), which is in this case obtained by:
+
+\[ \bar{r}_1 = (1 + 1/m) \cdot \text{tr}(V_B \bar{V}_W^{-1}) / k \]
+
+where \( V_B \) is the between-imputation variance, \( V_W \) the within-imputation variance, and \( m \) is the number of imputed datasets.
+
+The p-value of the \( D_1 \) statistic is calculated by comparing the value to an F distribution with \( k \) and \( v_1 \) degrees of freedom.
+
+\[ p = \Pr[F_{k, v_1} > D_1] \]
+
+\[ v_1 = 
+\begin{cases} 
+4 + (t - 4) [1 + (1 - 2 t^{-1}) r_1^{-1}]^2 & \text{if } t = k(m-1) > 4 \\
+t (1 + k^{-1}) (1 + r_1^{-1})^2 / 2 & \text{otherwise}
+\end{cases}
+\]
+
+Equation (13.3) is used when \( t = k(m-1) > 4 \), otherwise, use equation (13.4).
+
