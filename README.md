@@ -8,7 +8,7 @@ Rubin's original proposal focused on studying variation due to uncertainty in im
 
 Tests for parameter combinations and technical improvements for degrees of freedom followed in the 1990s. Multiple imputation faced criticism in this period, with concerns about validity depending on subsequent analysis and bias in estimating variance. The tide turned around 2005, with multiple imputation becoming widely accepted and implemented in major statistical packages.
 
-Today, multiple imputation is the benchmark against which newer methods are compared, marking a significant evolution and acceptance in dealing with missing data. [Flexible Imputation of Missing Data, Second Edition]((https://stefvanbuuren.name/fimd/))
+Today, multiple imputation is the benchmark against which newer methods are compared, marking a significant evolution and acceptance in dealing with missing data.[Stef van Buuren, *Flexible Imputation of Missing Data*](https://stefvanbuuren.name/fimd/)
 
 ![Alt Text](./img.png)
 
