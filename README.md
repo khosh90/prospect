@@ -18,8 +18,13 @@ The analysis of multiple imputation has been well-established for R and SPSS. Ho
 
 # Function Documentation
 
-| Function Name               | Description                               |
-|-----------------------------|-------------------------------------------|
-| `calculate_variance`        | Calculates variance for imputed data      |
-| `generate_dataset`          | Generates synthetic datasets              |
-| `run_analysis`              | Executes the complete analysis process    |
+| Function Name                           | Description                               |
+|-----------------------------------------|-------------------------------------------|
+| `encode_categorical`                    | Encoding categorical variables     |
+| `numerical_backto_categorical`          | Return numerical to categorical              |
+| `decode_midas`                          | Decode categorical variables in imputed datasets obtained from MIDAS     |
+| `no_impute_variables`                          | Identify columns that may not be suitable for imputation ('Identifier', 'Datetime', 'High Cardinality', and 'Free Text'.|
+| `preprocess_midas`                    | Preprocess the input data for Multiple Imputation by Chained Equations with Midas.     |
+| `numerical_rubin`          | Perform Rubin's Rules for combining results from multiple imputed datasets for numerical variables.              |
+| `categorical_rubin`                          | Perform Rubin's Rules for combining results from multiple imputed datasets for categorical variables. |
+| `evaluate_imputed_data`                          |  Evaluate imputed data and calculate various metrics.|
