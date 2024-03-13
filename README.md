@@ -28,3 +28,14 @@ The analysis of multiple imputation has been well-established for R and SPSS. Ho
 | `numerical_rubin`          | Perform Rubin's Rules for combining results from multiple imputed datasets for numerical variables.              |
 | `categorical_rubin`                          | Perform Rubin's Rules for combining results from multiple imputed datasets for categorical variables. |
 | `evaluate_imputed_data`                          |  Evaluate imputed data and calculate various metrics.|
+
+# Math
+The Rubin's rule for combining repeated complete-data estimates is given by:
+
+$$ D_1 = (\bar{\theta} - \theta_0)^T V_T^{-1} (\bar{\theta} - \theta_0) / k $$
+
+where:
+- \( \bar{\theta} \) is the pooled coefficient,
+- \( \theta_0 \) is the value under the null hypothesis,
+- \( V_T \) is the total variance, and
+- \( k \) is the number of parameters.
